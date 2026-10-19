@@ -1,0 +1,49 @@
+1. world: core.py (ROS) against EdgeDroneEnvV2 (server)
+  PASS  calm: 6000 random steps identical (state, position, respawns)
+  PASS  windy: 6000 random steps identical (state, position, respawns)
+  PASS  gale_dusty: 6000 random steps identical (state, position, respawns)
+1b. towers stay off the roads and sidewalks (they run 17 units either side of every chunk border)
+  PASS  364 towers in 25 x 25 chunks, the closest is 18.0 units from a chunk border (the sidewalk ends at 17)
+2. policy: optimised against the straightforward reference
+  PASS  same action on 600 real states, largest logit difference 1.5e-05
+        cost per decision: straightforward 22.8 us, optimised 20.1 us
+3. fast (answer-driven): nodes through messages against the plain loop, 6000 steps in windy air
+  PASS  ran 6000 steps (1131 steps/s through the in-process bus)
+  PASS  late brain answers: 0
+  PASS  same flight as the plain loop: position -767.96, 633.83, 153.24, goals 55 (plain 55), collisions 0 (plain 0), respawns 0 (plain 0)
+  PASS  KPI node: 55 goals, 0 collisions, 9.17 goals / 1k, 0.0 collisions / 1k
+4. timer: nodes through messages against the plain loop, 1200 steps in windy air
+  PASS  ran 1200 steps (1220 steps/s through the in-process bus)
+  PASS  late brain answers: 0
+  PASS  same flight as the plain loop: position -705.09, -404.32, 102.34, goals 10 (plain 10), collisions 0 (plain 0), respawns 0 (plain 0)
+  PASS  KPI node: 10 goals, 0 collisions, 8.33 goals / 1k, 0.0 collisions / 1k
+5. web_bridge: everything the HUD reads is in the state message
+  PASS  the bridge received the rays and the status over the bus (the simulator builds /rays only because the bridge subscribes)
+  PASS  20 fields read by hud(): missing none
+  PASS  brain name, 28 sensor rays, weather
+  PASS  world messages: 120 obstacle boxes, 182 trees, 0 vehicles
+  PASS  the message encodes to JSON (orjson and json agree when orjson is installed)
+6. telemetry_node -> gcs_node (MAVLink)
+  PASS  7800 frames in 6000 steps, 0 CRC errors, 0 lost
+7. the cars of the city: traffic, parked cars, and what the camera sees
+  PASS  sim_node publishes the traffic, web_bridge turns it into a "cars" message: 85 cars, clock 99.95 s
+  PASS  70 of them are moving
+  PASS  the targets message carries the parked cars (147 here) and no random sim cars
+  PASS  the package copy of city_world.py is identical to the server's (tools/build_core.py copies it)
+  PASS  driving cars: the camera above a road counts up to 5 vehicles really there (the old random cars are gone)
+  PASS  parked cars: above the car park at block (-30, -18) (31 cars in total) the camera counts [8, 12, 9] vehicles
+8. roaming birds and patrol drones as obstacles: the simulator, the camera and the viewer all put them in the same place
+  PASS  146 floating blocks send out 209 birds and 181 patrol drones (1-3 birds and 1-2 drones each)
+  PASS  peak horizontal speed: birds 2.20 units/step (limit 2.2), patrol drones 1.60 (limit 1.6); the drone flies 5.0
+  PASS  they roam up to 565 units from their spot (window margin 609), between 20 and 195 high
+  PASS  the velocity sent to the viewer matches the real step-to-step motion (largest difference 0.098 units per step)
+  PASS  sim_node: moving_obstacles is on and the obstacle clock (900) equals the step number (900)
+  PASS  camera_node (897) and web_bridge (897) learned the clock from /edge_residual/flyers (within a few steps of 900)
+  PASS  the camera node sees exactly the boxes the simulator collides with: 12 static ones plus 22 roaming birds and drones near the drone
+  PASS  live viewer messages: the "obstacles" message still has the floating blocks for the gates (64 here), "flyers" has 141 birds and drones
+  PASS  all 22 roaming collision boxes near the drone are exactly where the "flyers" message puts the birds and drones
+  PASS  a 1500-step flight among roaming birds and drones: 15 goals, 0 respawns (1909 steps/s with the brain)
+  PASS  the package copy of flyers.py is identical to the server's (tools/build_core.py copies it)
+  PASS  the copy of the flyers code pasted into the standalone Kaggle trainer is identical to flyers.py
+
+ALL CHECKS PASSED

@@ -1,0 +1,290 @@
+{
+ "summary": {
+  "static": {
+   "goals_per_1k": 8.95,
+   "collisions_per_1k": 0.0,
+   "respawns_per_1k": 0.0,
+   "runs": 15,
+   "steps_each": 4000
+  },
+  "moving": {
+   "goals_per_1k": 8.78,
+   "collisions_per_1k": 0.48,
+   "respawns_per_1k": 0.0,
+   "runs": 15,
+   "steps_each": 4000
+  }
+ },
+ "rows": [
+  {
+   "goals": 39,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "calm",
+   "seed": 1234,
+   "steps": 4000
+  },
+  {
+   "goals": 43,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "calm",
+   "seed": 1235,
+   "steps": 4000
+  },
+  {
+   "goals": 41,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "calm",
+   "seed": 1236,
+   "steps": 4000
+  },
+  {
+   "goals": 41,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "calm",
+   "seed": 1237,
+   "steps": 4000
+  },
+  {
+   "goals": 41,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "calm",
+   "seed": 1238,
+   "steps": 4000
+  },
+  {
+   "goals": 35,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "windy",
+   "seed": 1234,
+   "steps": 4000
+  },
+  {
+   "goals": 37,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "windy",
+   "seed": 1235,
+   "steps": 4000
+  },
+  {
+   "goals": 39,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "windy",
+   "seed": 1236,
+   "steps": 4000
+  },
+  {
+   "goals": 38,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "windy",
+   "seed": 1237,
+   "steps": 4000
+  },
+  {
+   "goals": 37,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "windy",
+   "seed": 1238,
+   "steps": 4000
+  },
+  {
+   "goals": 28,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "gale",
+   "seed": 1234,
+   "steps": 4000
+  },
+  {
+   "goals": 28,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "gale",
+   "seed": 1235,
+   "steps": 4000
+  },
+  {
+   "goals": 28,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "gale",
+   "seed": 1236,
+   "steps": 4000
+  },
+  {
+   "goals": 33,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "gale",
+   "seed": 1237,
+   "steps": 4000
+  },
+  {
+   "goals": 29,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": false,
+   "weather": "gale",
+   "seed": 1238,
+   "steps": 4000
+  },
+  {
+   "goals": 40,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "calm",
+   "seed": 1234,
+   "steps": 4000
+  },
+  {
+   "goals": 41,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "calm",
+   "seed": 1235,
+   "steps": 4000
+  },
+  {
+   "goals": 42,
+   "collisions": 3,
+   "respawns": 0,
+   "moving": true,
+   "weather": "calm",
+   "seed": 1236,
+   "steps": 4000
+  },
+  {
+   "goals": 40,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "calm",
+   "seed": 1237,
+   "steps": 4000
+  },
+  {
+   "goals": 44,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "calm",
+   "seed": 1238,
+   "steps": 4000
+  },
+  {
+   "goals": 35,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "windy",
+   "seed": 1234,
+   "steps": 4000
+  },
+  {
+   "goals": 38,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "windy",
+   "seed": 1235,
+   "steps": 4000
+  },
+  {
+   "goals": 36,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "windy",
+   "seed": 1236,
+   "steps": 4000
+  },
+  {
+   "goals": 39,
+   "collisions": 18,
+   "respawns": 0,
+   "moving": true,
+   "weather": "windy",
+   "seed": 1237,
+   "steps": 4000
+  },
+  {
+   "goals": 37,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "windy",
+   "seed": 1238,
+   "steps": 4000
+  },
+  {
+   "goals": 27,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "gale",
+   "seed": 1234,
+   "steps": 4000
+  },
+  {
+   "goals": 27,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "gale",
+   "seed": 1235,
+   "steps": 4000
+  },
+  {
+   "goals": 26,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "gale",
+   "seed": 1236,
+   "steps": 4000
+  },
+  {
+   "goals": 28,
+   "collisions": 0,
+   "respawns": 0,
+   "moving": true,
+   "weather": "gale",
+   "seed": 1237,
+   "steps": 4000
+  },
+  {
+   "goals": 27,
+   "collisions": 8,
+   "respawns": 0,
+   "moving": true,
+   "weather": "gale",
+   "seed": 1238,
+   "steps": 4000
+  }
+ ]
+}
