@@ -1,0 +1,6 @@
+{
+  "level": "/Game/AutonomousDrone.AutonomousDrone",
+  "drone": "/Game/AutonomousDrone.AutonomousDrone:PersistentLevel.StaticMeshActor_549",
+  "goal": "/Game/AutonomousDrone.AutonomousDrone:PersistentLevel.StaticMeshActor_548",
+  "camera": "/Game/AutonomousDrone.AutonomousDrone:PersistentLevel.CameraActor_0"
+}

@@ -1,0 +1,409 @@
+{
+  "name": "sac",
+  "agent": "sac",
+  "inputs": 37,
+  "actions": 9,
+  "seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005
+  ],
+  "steps": 6000,
+  "shield": false,
+  "wind_comp": 0.0,
+  "conditions": {
+    "calm": {
+      "agg": {
+        "goals_per_1k": [
+          10.361111111111112,
+          0.11453071182271289
+        ],
+        "collisions_per_1k": [
+          0.0,
+          0.0
+        ],
+        "respawns_per_1k": [
+          0.0,
+          0.0
+        ],
+        "success_rate": [
+          1.0,
+          0.0
+        ],
+        "energy_per_goal": [
+          86.53912074054135,
+          1.017932046288245
+        ],
+        "ground_speed": [
+          5.149569713941186,
+          0.02361271757459416
+        ]
+      },
+      "runs": [
+        {
+          "goals_per_1k": 10.166666666666666,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 88.11433770491419,
+          "ground_speed": 5.147199083039082
+        },
+        {
+          "goals_per_1k": 10.333333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 87.49663064515802,
+          "ground_speed": 5.162999828669602
+        },
+        {
+          "goals_per_1k": 10.5,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 85.50555238094883,
+          "ground_speed": 5.184545307028317
+        },
+        {
+          "goals_per_1k": 10.5,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 85.23596984126634,
+          "ground_speed": 5.154184292200713
+        },
+        {
+          "goals_per_1k": 10.333333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 86.31207258064157,
+          "ground_speed": 5.106467168754113
+        },
+        {
+          "goals_per_1k": 10.333333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 86.57016129031906,
+          "ground_speed": 5.142022603955284
+        }
+      ]
+    },
+    "breeze": {
+      "agg": {
+        "goals_per_1k": [
+          10.194444444444445,
+          0.14958791130929208
+        ],
+        "collisions_per_1k": [
+          0.0,
+          0.0
+        ],
+        "respawns_per_1k": [
+          0.0,
+          0.0
+        ],
+        "success_rate": [
+          1.0,
+          0.0
+        ],
+        "energy_per_goal": [
+          95.33670290085871,
+          1.2763062931507778
+        ],
+        "ground_speed": [
+          4.906573532511269,
+          0.02584039670483347
+        ]
+      },
+      "runs": [
+        {
+          "goals_per_1k": 10.0,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 96.54659878295222,
+          "ground_speed": 4.9435920502464334
+        },
+        {
+          "goals_per_1k": 10.333333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 94.46722683098002,
+          "ground_speed": 4.922068570592348
+        },
+        {
+          "goals_per_1k": 10.333333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 95.86340286996199,
+          "ground_speed": 4.8659955882982215
+        },
+        {
+          "goals_per_1k": 10.166666666666666,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 93.57127168680813,
+          "ground_speed": 4.917724730169355
+        },
+        {
+          "goals_per_1k": 10.333333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 94.41540834488148,
+          "ground_speed": 4.908418006802171
+        },
+        {
+          "goals_per_1k": 10.0,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 97.15630888956846,
+          "ground_speed": 4.881642248959082
+        }
+      ]
+    },
+    "windy": {
+      "agg": {
+        "goals_per_1k": [
+          9.194444444444445,
+          0.22395160411940415
+        ],
+        "collisions_per_1k": [
+          0.0,
+          0.0
+        ],
+        "respawns_per_1k": [
+          0.0,
+          0.0
+        ],
+        "success_rate": [
+          1.0,
+          0.0
+        ],
+        "energy_per_goal": [
+          136.46890101958053,
+          6.702674004010597
+        ],
+        "ground_speed": [
+          4.473883291781446,
+          0.1109479212772302
+        ]
+      },
+      "runs": [
+        {
+          "goals_per_1k": 9.333333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 129.41565584819642,
+          "ground_speed": 4.525884024097539
+        },
+        {
+          "goals_per_1k": 9.0,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 148.4324486744665,
+          "ground_speed": 4.359599079229038
+        },
+        {
+          "goals_per_1k": 8.833333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 141.50434179828514,
+          "ground_speed": 4.370053962478183
+        },
+        {
+          "goals_per_1k": 9.333333333333334,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 129.98318497372819,
+          "ground_speed": 4.683531986477838
+        },
+        {
+          "goals_per_1k": 9.5,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 133.4593909765448,
+          "ground_speed": 4.486834929807049
+        },
+        {
+          "goals_per_1k": 9.166666666666666,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 136.01838384626217,
+          "ground_speed": 4.41739576859903
+        }
+      ]
+    },
+    "gale": {
+      "agg": {
+        "goals_per_1k": [
+          7.0,
+          0.396746023807936
+        ],
+        "collisions_per_1k": [
+          0.0,
+          0.0
+        ],
+        "respawns_per_1k": [
+          0.0,
+          0.0
+        ],
+        "success_rate": [
+          1.0,
+          0.0
+        ],
+        "energy_per_goal": [
+          258.2528940877778,
+          23.28955821081858
+        ],
+        "ground_speed": [
+          3.8444177173649106,
+          0.13046918453704914
+        ]
+      },
+      "runs": [
+        {
+          "goals_per_1k": 7.166666666666667,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 245.42731797943364,
+          "ground_speed": 3.8022185929561427
+        },
+        {
+          "goals_per_1k": 6.166666666666667,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 293.2983861032069,
+          "ground_speed": 3.8173785024294795
+        },
+        {
+          "goals_per_1k": 7.0,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 277.31243724306313,
+          "ground_speed": 3.814091016925055
+        },
+        {
+          "goals_per_1k": 7.333333333333333,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 232.7666086027948,
+          "ground_speed": 3.8389510544716
+        },
+        {
+          "goals_per_1k": 7.333333333333333,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 231.32724902123928,
+          "ground_speed": 4.112752869266556
+        },
+        {
+          "goals_per_1k": 7.0,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 269.38536557692885,
+          "ground_speed": 3.6811142681406293
+        }
+      ]
+    },
+    "gale_dusty": {
+      "agg": {
+        "goals_per_1k": [
+          6.611111111111112,
+          0.582671582316751
+        ],
+        "collisions_per_1k": [
+          13.277777777777779,
+          29.690013701247203
+        ],
+        "respawns_per_1k": [
+          0.05555555555555555,
+          0.07856742013183861
+        ],
+        "success_rate": [
+          0.9913288288288288,
+          0.012276840887358793
+        ],
+        "energy_per_goal": [
+          274.0262413812563,
+          23.269960392582597
+        ],
+        "ground_speed": [
+          3.8003578118152928,
+          0.15413365279421398
+        ]
+      },
+      "runs": [
+        {
+          "goals_per_1k": 7.666666666666667,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 238.15835891308782,
+          "ground_speed": 3.948779511827722
+        },
+        {
+          "goals_per_1k": 6.5,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 273.39031796363014,
+          "ground_speed": 3.9341567705849716
+        },
+        {
+          "goals_per_1k": 6.0,
+          "collisions_per_1k": 79.66666666666667,
+          "respawns_per_1k": 0.16666666666666666,
+          "success_rate": 0.972972972972973,
+          "energy_per_goal": 294.944422783997,
+          "ground_speed": 3.589457359222653
+        },
+        {
+          "goals_per_1k": 6.0,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 308.81999093903755,
+          "ground_speed": 3.6023689893659023
+        },
+        {
+          "goals_per_1k": 6.5,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.16666666666666666,
+          "success_rate": 0.975,
+          "energy_per_goal": 272.46536206821344,
+          "ground_speed": 3.9375531084588657
+        },
+        {
+          "goals_per_1k": 7.0,
+          "collisions_per_1k": 0.0,
+          "respawns_per_1k": 0.0,
+          "success_rate": 1.0,
+          "energy_per_goal": 256.3789956195719,
+          "ground_speed": 3.789831131431645
+        }
+      ]
+    }
+  }
+}

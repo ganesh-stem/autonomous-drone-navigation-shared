@@ -1,0 +1,38 @@
+{
+  "agent": "sac",
+  "shield": false,
+  "wind_comp": 0.0,
+  "stack": 1,
+  "wind_aware": true,
+  "steps": 717824,
+  "minutes": 60.0,
+  "device": "cuda",
+  "gradient_steps": 358399,
+  "per_condition": {
+    "calm": {
+      "steps": 72000,
+      "goals_per_1k": 9.01,
+      "collisions_per_1k": 2.3
+    },
+    "breeze": {
+      "steps": 187500,
+      "goals_per_1k": 8.98,
+      "collisions_per_1k": 3.3
+    },
+    "windy": {
+      "steps": 198000,
+      "goals_per_1k": 8.4,
+      "collisions_per_1k": 4.0
+    },
+    "gale": {
+      "steps": 165824,
+      "goals_per_1k": 6.5,
+      "collisions_per_1k": 20.9
+    },
+    "gale_dusty": {
+      "steps": 94500,
+      "goals_per_1k": 5.62,
+      "collisions_per_1k": 25.6
+    }
+  }
+}

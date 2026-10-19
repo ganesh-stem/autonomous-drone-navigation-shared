@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Autonomous Drone</title>
+<style>
+  :root { --side:340px; --bg:#0b1220; --panel:rgba(12,20,36,.82); --ink:#e8eefc; --dim:#8fa3c7; --green:#47ff8c; --blue:#5aa6ff; --orange:#ff8c33; --amber:#ffc94d; --purple:#c17dff; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:13px/1.4 system-ui,Segoe UI,Roboto,sans-serif; overflow:hidden; }
+  canvas#view { position:fixed; left:0; top:0; bottom:0; right:var(--side); width:calc(100% - var(--side)); height:100%; display:block; }
+  .panel { position:fixed; top:0; right:0; bottom:0; width:var(--side); overflow:auto; background:var(--bg); border-left:1px solid rgba(255,255,255,.10); padding:14px; }
+  h1 { font-size:15px; margin:0 0 8px; letter-spacing:.3px; }
+  .stats { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .stat { background:rgba(255,255,255,.05); border-radius:8px; padding:6px 8px; }
+  .stat .k { color:var(--dim); font-size:10px; text-transform:uppercase; letter-spacing:.6px; }
+  .stat .v { font-size:16px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .row { display:flex; gap:6px; flex-wrap:wrap; margin:4px 0; }
+  button { flex:1; background:rgba(255,255,255,.08); color:var(--ink); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:6px 8px; cursor:pointer; font:inherit; }
+  button:hover { background:rgba(255,255,255,.16); } button.active { background:var(--blue); color:#001; }
+  button.red { border-color:#ff5a5a; }
+  select { flex:1; min-width:0; background:#0000004d; color:var(--ink); border:1px solid #ffffff22; border-radius:6px; padding:4px; }
+  label { display:flex; align-items:center; gap:6px; color:var(--dim); }
+  input[type=range] { flex:1; }
+  details.drawer { margin-top:8px; border-top:1px solid rgba(255,255,255,.08); }
+  details.drawer > summary { cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;
+      font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--dim); padding:9px 2px; user-select:none; }
+  details.drawer > summary::-webkit-details-marker { display:none; }
+  details.drawer > summary::after { content:'▾'; font-size:13px; }
+  details.drawer[open] > summary::after { content:'▴'; }
+  details.drawer > summary:hover { color:var(--ink); }
+  .drawer-body { padding-bottom:6px; }
+  .hint { color:var(--dim); font-size:11px; }
+  #camImg { width:100%; image-rendering:pixelated; border-radius:6px; background:#000; display:block; }
+  .camhead { display:grid; grid-template-columns:1fr 1fr 1fr; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:.8px; color:var(--dim); margin-bottom:3px; }
+  table.found { width:100%; border-collapse:collapse; margin:6px 0 4px; font-variant-numeric:tabular-nums; }
+  table.found th { font-size:10px; font-weight:400; text-transform:uppercase; letter-spacing:.6px; color:var(--dim); text-align:right; padding:2px 6px; }
+  table.found th:first-child, table.found td:first-child { text-align:left; }
+  table.found td { padding:3px 6px; border-top:1px solid rgba(255,255,255,.07); text-align:right; }
+  table.found td.ok { color:var(--green); font-weight:600; } table.found td.miss { color:var(--amber); font-weight:600; }
+  .chip { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:7px; vertical-align:-1px; }
+  #banner { position:fixed; top:12px; right:calc(var(--side) + 12px); background:var(--panel); border-radius:10px; padding:8px 12px; font-size:12px; }
+  #banner b { color:var(--green); }
+</style>
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+               "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/" } }
+</script>
+</head>
+<body>
+<canvas id="view"></canvas>
+<div class="panel">
+  <h1>Autonomous Drone</h1>
+
+  <details class="drawer" data-key="weather" open>
+    <summary>Weather and brain</summary>
+    <div class="drawer-body">
+      <div class="row"><label style="width:64px">Weather</label><select id="weatherSel" onchange="ctrl('weather', this.value)"></select></div>
+      <div class="row"><label style="width:64px">Brain</label><select id="brainSel" onchange="ctrl('brain', this.value)"></select></div>
+      <div class="row"><label style="flex:1;white-space:nowrap"><input type="checkbox" id="autoW"> Auto weather every</label><input type="number" id="autoWSec" value="30" min="5" max="600" style="width:52px"><span class="hint">s</span><select id="autoWMode" style="flex:0 0 92px"><option value="cycle">In order</option><option value="random">Random</option></select></div>
+      <div class="stats" style="margin-top:6px">
+        <div class="stat" style="grid-column:span 2"><div class="k">Wind (units/step)</div><div class="v" id="windL" style="color:#5ad1ff">0.0</div><div class="hint" id="windDirL"></div></div>
+        <!-- The battery card is hidden for now. The energy is still calculated (Energy / goal below, the replay files, the telemetry). Remove display:none to show it again. -->
+        <div class="stat" style="display:none"><div class="k">Battery</div><div class="v" id="battL" style="color:var(--green)">100%</div></div>
+      </div>
+    </div>
+  </details>
+
+  <details class="drawer" data-key="kpi" open>
+    <summary>KPIs (since the last weather change)</summary>
+    <div class="drawer-body">
+      <div class="stats">
+        <div class="stat"><div class="k">Goals</div><div class="v" id="goalsL" style="color:var(--orange)">0</div></div>
+        <div class="stat"><div class="k">Total goals</div><div class="v" id="totalGoalsL" style="color:var(--orange)">0</div></div>
+        <div class="stat"><div class="k">Steps</div><div class="v" id="stepsL" style="color:var(--blue)">0</div></div>
+        <div class="stat"><div class="k">Goals / 1k steps</div><div class="v" id="gpkL" style="color:var(--green)">0</div></div>
+        <div class="stat"><div class="k">Collisions / 1k</div><div class="v" id="cpkL" style="color:#ff6a6a">0</div></div>
+        <div class="stat"><div class="k">Total collisions</div><div class="v" id="totalCollisionsL" style="color:#ff6a6a">0</div></div>
+        <div class="stat"><div class="k">Energy / goal</div><div class="v" id="epgL">-</div></div>
+        <div class="stat"><div class="k">Ground speed</div><div class="v" id="gsL">0</div></div>
+        <div class="stat"><div class="k">Altitude</div><div class="v" id="altL">0</div></div>
+        <div class="stat"><div class="k">Respawns</div><div class="v" id="respawnsL" style="color:var(--purple)">0</div></div>
+      </div>
+    </div>
+  </details>
+
+  <details class="drawer" data-key="camera" open>
+    <summary>Onboard camera and detector</summary>
+    <div class="drawer-body">
+      <div class="camhead"><span>RGB</span><span>Thermal</span><span>Height</span></div>
+      <img id="camImg" alt="camera" />
+      <table class="found">
+        <tr><th></th><th>found</th><th>really there</th></tr>
+        <tr><td><i class="chip" style="background:#ff3b3b"></i>Vehicles</td><td id="fnd0">0</td><td id="tru0">0</td></tr>
+        <tr><td><i class="chip" style="background:#ffe933"></i>People</td><td id="fnd1">0</td><td id="tru1">0</td></tr>
+        <tr><td><i class="chip" style="background:#2f8cff"></i>Buildings</td><td id="fnd2">0</td><td id="tru2">0</td></tr>
+      </table>
+      <div class="hint" id="camL">waiting for the first frame</div>
+      <div class="hint">The coloured boxes in the picture are what the detector found. Height is a LiDAR-like map (bright = a taller roof).</div>
+      <div class="row" style="margin-top:6px"><label style="width:64px">Light</label>
+        <button id="light_day" onclick="ctrl('light','day')">Day</button><button id="light_dusk" onclick="ctrl('light','dusk')">Dusk</button><button id="light_night" onclick="ctrl('light','night')">Night</button></div>
+      <div class="row"><label style="flex:1;white-space:nowrap"><input type="checkbox" id="autoL"> Auto light (day, dusk, night) every</label><input type="number" id="autoLSec" value="20" min="5" max="600" style="width:52px"><span class="hint">s</span></div>
+      <div class="row"><label style="width:64px">Sensors</label>
+        <select id="sensorSel" onchange="ctrl('sensors', this.value)"><option value="fused">RGB + thermal + height</option><option value="rgb">RGB only</option><option value="thermal">Thermal only</option><option value="lidar">Height only</option><option value="thermal+lidar">Thermal + height</option></select></div>
+    </div>
+  </details>
+
+  <details class="drawer" data-key="telemetry">
+    <summary>MAVLink telemetry</summary>
+    <div class="drawer-body">
+      <div class="hint" id="tmL">-</div>
+      <div class="hint">HEARTBEAT, LOCAL_POSITION_NED, ATTITUDE, SYS_STATUS, WIND_COV as MAVLink v2 frames, decoded and CRC-checked by a simulated ground station.</div>
+    </div>
+  </details>
+
+  <details class="drawer" data-key="replay">
+    <summary>Replay (recorded runs)</summary>
+    <div class="drawer-body">
+      <div class="row"><select id="replaySel"></select><button onclick="ctrl('list_replays')" style="flex:0 0 auto">Refresh</button></div>
+      <div class="row"><button id="replayPlay" style="border-color:#47ff8c">Play</button><button onclick="ctrl('replay_pause')">Pause / Resume</button><button class="red" onclick="ctrl('replay_stop')">Stop</button></div>
+      <input type="range" id="replaySeek" min="0" max="1000" value="0" style="width:100%">
+      <div class="hint" id="replayL">Live. Put replay.jsonl files (from train_edge.py or edge_standalone.py) into web3d_drones_edge/logs/ and press Refresh. The Speed slider fast-forwards.</div>
+    </div>
+  </details>
+
+  <details class="drawer" data-key="simulation">
+    <summary>Simulation</summary>
+    <div class="drawer-body">
+      <div class="row"><button id="pauseBtn" class="red">Pause</button><button onclick="ctrl('new_goal')">New goal</button></div>
+      <label>Speed <input type="range" id="speed" min="0.5" max="8" step="0.5" value="1"> <span id="speedL">1.0x</span></label>
+    </div>
+  </details>
+
+  <details class="drawer" data-key="view">
+    <summary>View</summary>
+    <div class="drawer-body">
+      <div class="row"><button id="camChase" class="active">Chase</button><button id="camOrbit">Orbit</button><button id="camTop">Top</button></div>
+      <div class="row"><label><input type="checkbox" id="showSensors"> sensors</label><label><input type="checkbox" id="showTrail"> trail</label></div>
+    </div>
+  </details>
+</div>
+<div id="banner" title="FPS: how often the browser draws the 3D view.">FPS <b id="fpsL">-</b></div>
+<script type="module" src="/static/app.js?v=15"></script>
+</body>
+</html>

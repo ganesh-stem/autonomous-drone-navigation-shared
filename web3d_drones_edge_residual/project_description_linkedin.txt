@@ -1,0 +1,22 @@
+🚁 Autonomous Drone: Residual SAC on a PID Baseline
+==============
+
+A drone trained with reinforcement learning, but instead of learning the whole flight policy on its own, it only has to learn a correction on top of a fixed, hand-written PID controller. It flies through procedurally generated towers across five weather conditions, from calm air to a dusty gale.
+
+
+Training Results
+===========
+
+🔹 747,520 flight steps
+🔹 373,247 gradient steps
+🔹 99.8% of 1,585 attempts reached the goal
+🔹 1,582 goals reached
+🔹 5.9 collisions per 1,000 steps (averaged across all 5 weather conditions)
+🔹 8.8 goals per 1,000 steps (averaged across all 5 weather conditions)
+🔹 Final average reward score: 0.41
+
+
+After that training run, the final weights were frozen and tested live. The video below shows that test, with the model computing a fresh correction on top of the PID baseline at every step as the weather turns.
+
+
+#ArtificialIntelligence #AI #MachineLearning #ML #ReinforcementLearning #RL #DeepLearning #SAC #SoftActorCritic #ResidualLearning #NeuralNetworks #PyTorch #Python #Drones #AutonomousDrones #UAV #AutonomousSystems #ComputerVision #Robotics #3DSimulation #AIProjects #Simulation
