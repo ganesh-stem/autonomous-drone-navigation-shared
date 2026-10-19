@@ -1,0 +1,73 @@
+{
+  "params": [
+    1.48434,
+    0.08299,
+    10.13486,
+    0.32978,
+    0.00708,
+    1.77534,
+    0.84007,
+    0.15834,
+    0.5013,
+    33.26705,
+    100.15595,
+    0.26009
+  ],
+  "names": [
+    "kp_yaw",
+    "ki_yaw",
+    "kd_yaw",
+    "kp_alt",
+    "ki_alt",
+    "kd_alt",
+    "kp_spd",
+    "ki_spd",
+    "kd_spd",
+    "avoid_yaw",
+    "avoid_alt",
+    "block_from"
+  ],
+  "picked": "final_mean",
+  "held_out": {
+    "pid default|moving": {
+      "score": -226.5,
+      "goals_per_1k": 7.06,
+      "collisions_per_1k": 116.78
+    },
+    "pid default|static": {
+      "score": -276.94,
+      "goals_per_1k": 6.72,
+      "collisions_per_1k": 141.83
+    },
+    "pid last_best|moving": {
+      "score": -140.06,
+      "goals_per_1k": 4.17,
+      "collisions_per_1k": 72.11
+    },
+    "pid last_best|static": {
+      "score": -96.0,
+      "goals_per_1k": 5.11,
+      "collisions_per_1k": 50.56
+    },
+    "pid final_mean|moving": {
+      "score": -67.5,
+      "goals_per_1k": 3.94,
+      "collisions_per_1k": 35.72
+    },
+    "pid final_mean|static": {
+      "score": -177.78,
+      "goals_per_1k": 3.67,
+      "collisions_per_1k": 90.72
+    },
+    "classic prior|moving": {
+      "score": -782.61,
+      "goals_per_1k": 4.61,
+      "collisions_per_1k": 393.61
+    },
+    "evolved prior|moving": {
+      "score": -236.5,
+      "goals_per_1k": 4.61,
+      "collisions_per_1k": 120.56
+    }
+  }
+}

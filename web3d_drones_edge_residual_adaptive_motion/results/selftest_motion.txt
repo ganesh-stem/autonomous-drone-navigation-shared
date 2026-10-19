@@ -1,0 +1,66 @@
+PASS  install_motion_cues three times wraps get_state once   [1]
+PASS  CLASSIC prior == old rule on 3000 random 37-input states   [max diff 1.7e-16]
+PASS  CLASSIC prior ignores the 28 cue inputs (65 inputs, same numbers)
+PASS  CLASSIC prior == old rule on 600 real states of a flight
+PASS  65 inputs with the cues, 37 without   [65]
+PASS  zero cues right after a start
+PASS  cues == (new reading - old reading) * 10, clipped
+PASS  cues on or off: the same flight and the same reward (penalty 0)   [0 collisions in the flight]
+PASS  the first 37 inputs match between a cue env and a plain env, all along
+PASS  zero cues on the step after a respawn   [6 respawns]
+PASS  approach penalty is never a bonus
+PASS  approach penalty leaves the flight, collisions and goals alone
+PASS  approach penalty fires sometimes and stays small   [745 of 4000 steps, largest 0.500]
+PASS  hand-made case: a ray at 0.8 closing 0.1 per step costs the full 0.5   [0.5000]
+PASS  flyer_speed 0.5 advances the flyers clock by half a step per step   [5.0]
+PASS  flyer_speed 1.0 (the default) advances it by one
+PASS  prior_logits: shape (B, 9), finite, batch == one by one
+PASS  a closing obstacle ahead raises 'reverse' and 'slow'   [reverse 0.33 -> 1.00, slow 0.85 -> 2.54]
+PASS  with only 37 inputs the same state gets no loom term
+PASS  avoid turns away from the nearer side (right blocked -> left)
+PASS  sep-CMA-ES drives a 12-D bowl close to its minimum   [best squared error 4.7e-07]
+PASS  trainer exists and compiles
+PASS  trainer is up to date with build_trainer.py (rebuild gives the same text)
+PASS  trainer holds motion_cues.py exactly as pasted
+PASS  trainer holds prior.py exactly as pasted (with the evolved numbers)
+PASS  the flyers.py block in the trainer is the flyers.py of this folder
+PASS  no leftover of the old fixed rule in the trainer
+PASS  the prior is used in act and in both places of learn
+PASS  the server compiles
+PASS  evolved_prior.json: 12 numbers inside the search bounds
+   held-out (new skies), score = goals/1k - 2 * collisions/1k:
+     classic|moving         {'score': -884.67, 'goals_per_1k': 3.67, 'collisions_per_1k': 444.17}
+     classic|static         {'score': -817.39, 'goals_per_1k': 4.61, 'collisions_per_1k': 411.0}
+     last_best|moving       {'score': -102.11, 'goals_per_1k': 5.56, 'collisions_per_1k': 53.83}
+     last_best|static       {'score': -88.44, 'goals_per_1k': 5.89, 'collisions_per_1k': 47.17}
+     final_mean|moving      {'score': -135.5, 'goals_per_1k': 6.17, 'collisions_per_1k': 70.83}
+     final_mean|static      {'score': -51.5, 'goals_per_1k': 5.83, 'collisions_per_1k': 28.67}
+PASS  the picked prior is at least as good as the classic one on the held-out moving skies
+PASS  PID: P term only is kp * error
+PASS  PID: I term accumulates the error (ki * sum)   [[0.2, 0.4, 0.6000000000000001, 0.8, 1.0]]
+PASS  PID: D term is kd * (change of the error)
+PASS  PID: the integral does not wind up past its limit   [integral 1.0]
+PASS  PID: closes a simple loop (error below 0.05 after 120 steps)   [0.0014]
+PASS  arbitration: stop -> hover turn, reverse, climb, turn, slow, straight
+PASS  PidController.act: always an action 0..8   [[1, 2, 3, 4, 5, 6, 8]]
+PASS  PidController: goal on the left, clear sky -> turn left
+PASS  PidController: a wall dead ahead -> not straight (stop-turn or reverse)
+PASS  PID flies 3 x 800 steps among roaming flyers without error   [[(7, 0, 0), (7, 1, 0), (5, 179, 0)]]
+PASS  tuned_pid.json: 12 gains inside the bounds
+     pid default|moving         {'score': -226.5, 'goals_per_1k': 7.06, 'collisions_per_1k': 116.78}
+     pid default|static         {'score': -276.94, 'goals_per_1k': 6.72, 'collisions_per_1k': 141.83}
+     pid last_best|moving       {'score': -140.06, 'goals_per_1k': 4.17, 'collisions_per_1k': 72.11}
+     pid last_best|static       {'score': -96.0, 'goals_per_1k': 5.11, 'collisions_per_1k': 50.56}
+     pid final_mean|moving      {'score': -67.5, 'goals_per_1k': 3.94, 'collisions_per_1k': 35.72}
+     pid final_mean|static      {'score': -177.78, 'goals_per_1k': 3.67, 'collisions_per_1k': 90.72}
+     classic prior|moving       {'score': -782.61, 'goals_per_1k': 4.61, 'collisions_per_1k': 393.61}
+     evolved prior|moving       {'score': -236.5, 'goals_per_1k': 4.61, 'collisions_per_1k': 120.56}
+PASS  video tool: the numpy actor of a checkpoint == the formula (network + prior)
+PASS  video tool: renders a 2-second 320x180 clip to an MP4
+PASS  notebook: trains 15 minutes and renders 5 minutes
+PASS  notebook is up to date with make_notebook.py
+PASS  viewer messages: state has every field the viewer reads, 28 sensors, JSON-serialisable
+PASS  viewer messages: obstacles + targets + flyers (15 numbers each, velocity 0)
+PASS  viewer: the page is found next to this folder
+
+49/49 checks passed

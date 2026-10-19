@@ -1,0 +1,89 @@
+{
+  "theta": [
+    0.12607,
+    0.07895,
+    0.74994,
+    0.05883,
+    1.73844,
+    0.63284,
+    0.41153,
+    0.95546,
+    0.4598,
+    0.23535,
+    1.77711,
+    1.06747
+  ],
+  "names": [
+    "yaw_db",
+    "elev_db",
+    "w_max",
+    "w_min",
+    "fade",
+    "ahead_from",
+    "avoid",
+    "slow",
+    "climb",
+    "loom",
+    "brake",
+    "side_w"
+  ],
+  "picked": "last_best",
+  "classic": [
+    0.08,
+    0.15,
+    1.5,
+    0.0,
+    1.0,
+    0.35,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "held_out": {
+    "classic|moving": {
+      "score": -884.67,
+      "goals_per_1k": 3.67,
+      "collisions_per_1k": 444.17
+    },
+    "classic|static": {
+      "score": -817.39,
+      "goals_per_1k": 4.61,
+      "collisions_per_1k": 411.0
+    },
+    "last_best|moving": {
+      "score": -102.11,
+      "goals_per_1k": 5.56,
+      "collisions_per_1k": 53.83
+    },
+    "last_best|static": {
+      "score": -88.44,
+      "goals_per_1k": 5.89,
+      "collisions_per_1k": 47.17
+    },
+    "final_mean|moving": {
+      "score": -135.5,
+      "goals_per_1k": 6.17,
+      "collisions_per_1k": 70.83
+    },
+    "final_mean|static": {
+      "score": -51.5,
+      "goals_per_1k": 5.83,
+      "collisions_per_1k": 28.67
+    }
+  },
+  "settings": {
+    "generations": 40,
+    "pop": 16,
+    "episodes": 5,
+    "steps": 1500,
+    "sigma": 0.25,
+    "holdout_seeds": 6,
+    "holdout_steps": 3000,
+    "collision_weight": 2.0,
+    "seed": 11
+  },
+  "minutes": 22.7
+}

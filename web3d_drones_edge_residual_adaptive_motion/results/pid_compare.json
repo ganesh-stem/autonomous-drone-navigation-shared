@@ -1,0 +1,32 @@
+{
+  "pid default|moving": {
+    "score": -185.0,
+    "goals_per_1k": 7.56,
+    "collisions_per_1k": 96.28
+  },
+  "pid default|static": {
+    "score": -354.39,
+    "goals_per_1k": 6.06,
+    "collisions_per_1k": 180.22
+  },
+  "pid tuned|moving": {
+    "score": -161.06,
+    "goals_per_1k": 3.5,
+    "collisions_per_1k": 82.28
+  },
+  "pid tuned|static": {
+    "score": -114.17,
+    "goals_per_1k": 3.83,
+    "collisions_per_1k": 59.0
+  },
+  "classic prior|moving": {
+    "score": -782.61,
+    "goals_per_1k": 4.61,
+    "collisions_per_1k": 393.61
+  },
+  "evolved prior|moving": {
+    "score": -236.5,
+    "goals_per_1k": 4.61,
+    "collisions_per_1k": 120.56
+  }
+}
